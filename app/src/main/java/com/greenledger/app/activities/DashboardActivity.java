@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,6 +23,7 @@ public class DashboardActivity extends AppCompatActivity {
     private MaterialToolbar toolbar;
     private TextView userNameText;
     private MaterialCardView expenseCard, rawMaterialCard, labourCard;
+    private MaterialButton logoutButton;
     private FirebaseHelper firebaseHelper;
 
     @Override
@@ -48,10 +50,14 @@ public class DashboardActivity extends AppCompatActivity {
         expenseCard = findViewById(R.id.expenseCard);
         rawMaterialCard = findViewById(R.id.rawMaterialCard);
         labourCard = findViewById(R.id.labourCard);
+        logoutButton = findViewById(R.id.logoutButton);
     }
 
     private void setupToolbar() {
         setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+        }
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.action_logout) {
                 logout();
@@ -95,6 +101,8 @@ public class DashboardActivity extends AppCompatActivity {
         labourCard.setOnClickListener(v -> {
             startActivity(new Intent(DashboardActivity.this, LabourActivity.class));
         });
+
+        logoutButton.setOnClickListener(v -> logout());
     }
 
     private void logout() {

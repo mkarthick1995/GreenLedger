@@ -192,6 +192,19 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Logout Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/logoutButton"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/logout"
+                android:textColor="@color/error"
+                app:strokeColor="@color/error"
+                app:icon="@android:drawable/ic_lock_power_off"
+                app:iconTint="@color/error" />
+
         </LinearLayout>
     </ScrollView>
 
