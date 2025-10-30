@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GreenLedger</string>
+
+    <!-- Login Screen -->
+    <string name="login_title">Login</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="login_button">Login</string>
+    <string name="register_link">Don\'t have an account? Register</string>
+
+    <!-- Register Screen -->
+    <string name="register_title">Register</string>
+    <string name="full_name">Full Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="user_type">User Type</string>
+    <string name="register_button">Register</string>
+    <string name="login_link">Already have an account? Login</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">Dashboard</string>
+    <string name="welcome">Welcome</string>
+    <string name="expense_management">Expense Management</string>
+    <string name="raw_materials">Raw Materials</string>
+    <string name="labour_management">Labour Management</string>
+    <string name="logout">Logout</string>
+
+    <!-- Expense Management -->
+    <string name="expense_title">Expense Management</string>
+    <string name="add_expense">Add Expense</string>
+    <string name="expense_category">Category</string>
+    <string name="expense_amount">Amount</string>
+    <string name="expense_description">Description</string>
+    <string name="expense_date">Date</string>
+    <string name="save_expense">Save Expense</string>
+
+    <!-- Raw Materials -->
+    <string name="raw_material_title">Raw Materials</string>
+    <string name="add_material">Add Material</string>
+    <string name="material_name">Material Name</string>
+    <string name="material_quantity">Quantity</string>
+    <string name="material_unit">Unit</string>
+    <string name="material_cost">Cost per Unit</string>
+    <string name="save_material">Save Material</string>
+
+    <!-- Labour Management -->
+    <string name="labour_title">Labour Management</string>
+    <string name="add_labour">Add Labour</string>
+    <string name="labour_name">Labour Name</string>
+    <string name="labour_phone">Phone Number</string>
+    <string name="hours_worked">Hours Worked</string>
+    <string name="hourly_rate">Hourly Rate</string>
+    <string name="work_date">Work Date</string>
+    <string name="work_description">Work Description</string>
+    <string name="save_labour">Save Labour Entry</string>
+
+    <!-- Common -->
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="loading">Loading…</string>
+    <string name="error_empty_field">This field cannot be empty</string>
+    <string name="error_invalid_phone">Invalid phone number</string>
+    <string name="error_password_mismatch">Passwords do not match</string>
+    <string name="error_network">Network error. Please try again.</string>
+    <string name="success">Success</string>
+
+    <!-- User Types -->
+    <string-array name="user_types">
+        <item>Farmer</item>
+        <item>Labourer</item>
+    </string-array>
+
+    <!-- Expense Categories -->
+    <string-array name="expense_categories">
+        <item>Seeds</item>
+        <item>Fertilizers</item>
+        <item>Pesticides</item>
+        <item>Equipment</item>
+        <item>Labour</item>
+        <item>Water/Irrigation</item>
+        <item>Transportation</item>
+        <item>Other</item>
+    </string-array>
+
+    <!-- Units -->
+    <string-array name="material_units">
+        <item>kg</item>
+        <item>liters</item>
+        <item>bags</item>
+        <item>units</item>
+    </string-array>
+</resources>

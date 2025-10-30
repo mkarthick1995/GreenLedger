@@ -1,0 +1,38 @@
+# Android Studio / IntelliJ IDEA
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.idea/
+
+# Build outputs
+/build
+/app/build
+/captures
+.externalNativeBuild
+.cxx
+
+# Gradle files
+.gradle/
+gradle-wrapper.jar
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Firebase
+*-service-account-key.json
+*-firebase-adminsdk-*.json
+
+# Misc
+*.swp
+*.swo
+local.properties

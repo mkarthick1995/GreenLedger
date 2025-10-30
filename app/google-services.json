@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "116825152924",
+    "project_id": "greenledger-e0d3a",
+    "storage_bucket": "greenledger-e0d3a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116825152924:android:6622602bdb2aa7b473fc59",
+        "android_client_info": {
+          "package_name": "com.greenledger.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjrzG1UJ9rtjY5RI8KOR37ihSV_zfE1XE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
