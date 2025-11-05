@@ -2,5 +2,14 @@
 <resources>
     <!-- Note: Replace this key with your actual Google Maps API key -->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">YOUR_MAPS_API_KEY_HERE</string>
+        <!-- Other strings -->
+        <string name="soil_type">Soil Type</string>
+    <!-- Add these lines to your strings.xml file -->
+    <string name="storage_name">Storage Name</string>
+    <string name="storage_type">Storage Type</string>
+    <string name="capacity">Capacity</string>
+    <string name="location">Location</string>
+    <string name="cancel">Cancel</string>
+    <string name="save_changes">Save Changes</string>
 </resources>
 

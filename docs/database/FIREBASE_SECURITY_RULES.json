@@ -1,153 +1,24 @@
 {
   "rules": {
-    // Default deny all rule
-    ".read": false,
-    ".write": false,
-
-    "users": {
-      "$uid": {
-        // Users can read and write only their own data
-        ".read": "$uid === auth.uid",
-        ".write": "$uid === auth.uid",
-        ".validate": "newData.hasChildren(['role', 'name', 'phoneNumber'])",
-        "role": {
-          ".validate": "newData.isString() && newData.val().matches('^(ADMIN|FARMER|WORKER)$')"
-        },
-        "name": {
-          ".validate": "newData.isString() && newData.val().length > 0"
-        },
-        "phoneNumber": {
-          ".validate": "newData.isString() && newData.val().matches('^[+]?[0-9]{10,13}$')"
-        }
+    "businessPartners": {
+      "$partnerId": {
+        ".read": "auth != null",
+        ".write": "auth != null && (!data.exists() || data.child('ownerId').val() === auth.uid)"
       }
     },
-
-    "farms": {
-      // Only authenticated users can read farms
-      ".read": "auth != null",
-      "$farmId": {
-        // Only the owner can write to their farms
-        ".write": "auth != null && (!data.exists() || data.child('farmerId').val() === auth.uid)",
-        ".validate": "newData.hasChildren(['farmerId', 'farmDetails', 'metadata'])",
-        "farmerId": {
-          ".validate": "newData.isString() && newData.val() === auth.uid"
-        },
-        "farmDetails": {
-          ".validate": "newData.hasChildren(['name', 'totalArea'])",
-          "name": {
-            ".validate": "newData.isString() && newData.val().length > 0"
-          },
-          "totalArea": {
-            ".validate": "newData.isNumber() && newData.val() > 0"
-          }
-        },
-        "metadata": {
-          ".validate": "newData.hasChildren(['createdAt', 'updatedAt'])",
-          "createdAt": {
-            ".validate": "newData.isNumber()"
-          },
-          "updatedAt": {
-            ".validate": "newData.isNumber() && newData.val() >= data.child('createdAt').val()"
-          }
-        }
+    "orders": {
+      "$orderId": {
+        ".read": "auth != null && (data.child('partnerId').exists() && root.child('businessPartners').child(data.child('partnerId').val()).child('ownerId').val() === auth.uid)",
+        ".write": "auth != null && (!data.exists() || data.child('ownerId').val() === auth.uid)"
       }
     },
-
-    "crops": {
-      // Only authenticated users can read crops
-      ".read": "auth != null",
-      "$cropId": {
-        // Only the owner can write to their crops
-        ".write": "auth != null && (!data.exists() || data.child('farmerId').val() === auth.uid)",
-        ".validate": "newData.hasChildren(['farmerId', 'farmId', 'cropInfo', 'lifecycle', 'metadata'])",
-        "farmerId": {
-          ".validate": "newData.isString() && newData.val() === auth.uid"
-        },
-        "farmId": {
-          ".validate": "newData.isString() && root.child('farms').child(newData.val()).exists()"
-        },
-        "cropInfo": {
-          ".validate": "newData.hasChildren(['type', 'variety', 'category'])",
-          "type": {
-            ".validate": "newData.isString() && newData.val().length > 0"
-          },
-          "variety": {
-            ".validate": "newData.isString() && newData.val().length > 0"
-          },
-          "category": {
-            ".validate": "newData.isString() && newData.val().length > 0"
-          }
-        },
-        "lifecycle": {
-          ".validate": "newData.hasChildren(['status', 'sowingDate', 'expectedHarvestDate'])",
-          "status": {
-            ".validate": "newData.isString() && newData.val().matches('^(PLANNING|ACTIVE|HARVESTED|FAILED)$')"
-          },
-          "sowingDate": {
-            ".validate": "newData.isNumber()"
-          },
-          "expectedHarvestDate": {
-            ".validate": "newData.isNumber() && newData.val() > newData.parent().child('sowingDate').val()"
-          }
-        },
-        "metadata": {
-          ".validate": "newData.hasChildren(['createdAt', 'updatedAt'])",
-          "createdAt": {
-            ".validate": "newData.isNumber()"
-          },
-          "updatedAt": {
-            ".validate": "newData.isNumber() && newData.val() >= data.child('createdAt').val()"
-          }
-        }
-      }
-    },
-
-    "storage": {
-      // Only authenticated users can read storage
-      ".read": "auth != null",
-      "$storageId": {
-        // Only the owner can write to their storage
-        ".write": "auth != null && (!data.exists() || data.child('farmerId').val() === auth.uid)",
-        ".validate": "newData.hasChildren(['farmerId', 'storageInfo', 'metadata'])",
-        "farmerId": {
-          ".validate": "newData.isString() && newData.val() === auth.uid"
-        },
-        "storageInfo": {
-          ".validate": "newData.hasChildren(['name', 'type', 'capacity', 'currentOccupancy'])",
-          "name": {
-            ".validate": "newData.isString() && newData.val().length > 0"
-          },
-          "type": {
-            ".validate": "newData.isString() && newData.val().matches('^(BARN|WAREHOUSE|COLD_STORAGE|OPEN_STORAGE)$')"
-          },
-          "capacity": {
-            ".validate": "newData.isNumber() && newData.val() > 0"
-          },
-          "currentOccupancy": {
-            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= newData.parent().child('capacity').val()"
-          }
-        },
-        "inventory": {
-          "$itemId": {
-            ".validate": "newData.hasChildren(['cropId', 'quantity'])",
-            "cropId": {
-              ".validate": "newData.isString() && root.child('crops').child(newData.val()).exists()"
-            },
-            "quantity": {
-              ".validate": "newData.isNumber() && newData.val() > 0"
-            }
-          }
-        },
-        "metadata": {
-          ".validate": "newData.hasChildren(['createdAt', 'updatedAt'])",
-          "createdAt": {
-            ".validate": "newData.isNumber()"
-          },
-          "updatedAt": {
-            ".validate": "newData.isNumber() && newData.val() >= data.child('createdAt').val()"
-          }
-        }
+    "transactions": {
+      "$transactionId": {
+        ".read": "auth != null && (data.child('partnerId').exists() && root.child('businessPartners').child(data.child('partnerId').val()).child('ownerId').val() === auth.uid)",
+        ".write": "auth != null && (!data.exists() || data.child('ownerId').val() === auth.uid)",
+        ".validate": "newData.hasChildren(['partnerId', 'amount', 'type', 'timestamp'])"
       }
     }
   }
 }
+
